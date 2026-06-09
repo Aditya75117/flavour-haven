@@ -1,0 +1,142 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.menu {
+  background: $clr-charcoal;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("/images/pattern-overlay.svg") repeat;
+    opacity: .03;
+    pointer-events: none;
+  }
+
+  &__inner {
+    @include container;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: center;
+    gap: $sp-sm;
+    margin-bottom: $sp-3xl;
+    flex-wrap: wrap;
+  }
+
+  &__tab {
+    padding: $sp-sm $sp-xl;
+    font-family: $ff-serif;
+    font-size: $fs-sm;
+    color: rgba($clr-white, .6);
+    border: 1px solid rgba($clr-white, .15);
+    border-radius: $radius-xl;
+    background: transparent;
+    transition: all $transition-fast;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    &:hover {
+      color: $clr-amber;
+      border-color: $clr-amber;
+    }
+
+    &--active {
+      background: $grad-warm;
+      color: $clr-white;
+      border-color: transparent;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $sp-md;
+
+    @include respond(md) {
+      grid-template-columns: 1fr 1fr;
+      gap: $sp-xl;
+    }
+  }
+
+  &__item {
+    display: flex;
+    gap: $sp-lg;
+    padding: $sp-lg;
+    border-radius: $radius-md;
+    border: 1px solid rgba($clr-white, .06);
+    transition: all $transition-normal;
+
+    &:hover {
+      background: rgba($clr-white, .04);
+      border-color: rgba($clr-amber, .2);
+    }
+  }
+
+  &__item-img {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: $radius-md;
+    overflow: hidden;
+
+    img { @include img-cover; }
+  }
+
+  &__item-content {
+    flex: 1;
+  }
+
+  &__item-header {
+    @include flex-between;
+    margin-bottom: $sp-xs;
+  }
+
+  &__item-name {
+    font-family: $ff-serif;
+    font-size: $fs-md;
+    font-weight: $fw-semibold;
+    color: $clr-white;
+  }
+
+  &__item-price {
+    font-family: $ff-serif;
+    font-size: $fs-md;
+    font-weight: $fw-bold;
+    color: $clr-amber;
+    white-space: nowrap;
+    margin-left: $sp-md;
+  }
+
+  &__item-dots {
+    flex: 1;
+    border-bottom: 1px dashed rgba($clr-white, .15);
+    margin: 0 $sp-sm;
+    align-self: flex-end;
+    margin-bottom: 4px;
+  }
+
+  &__item-desc {
+    font-size: $fs-sm;
+    color: rgba($clr-white, .5);
+    line-height: $lh-normal;
+  }
+
+  &__item-tags {
+    display: flex;
+    gap: $sp-sm;
+    margin-top: $sp-sm;
+  }
+
+  &__item-tag {
+    font-size: $fs-xs;
+    padding: 2px $sp-sm;
+    border-radius: $radius-sm;
+    background: rgba($clr-amber, .1);
+    color: $clr-amber;
+  }
+}

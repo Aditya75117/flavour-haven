@@ -1,0 +1,111 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.about {
+  background: $clr-cream;
+  overflow: hidden;
+
+  // .about__images uses the image grid layout only
+  &__images {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $sp-md;
+    padding: $sp-md;
+  }
+
+  // .img-fill from globals handles position/overflow/border-radius/hover
+  // Only add layout-specific aspect-ratios and shadow here
+  &__img-wrapper {
+    box-shadow: $shadow-md;
+
+    &:nth-child(1) {
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 9;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      aspect-ratio: 1;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    bottom: -$sp-md;
+    right: $sp-md;
+    width: clamp(100px, 8vw + 40px, 140px);
+    height: clamp(100px, 8vw + 40px, 140px);
+    background: $grad-warm;
+    border-radius: $radius-full;
+    @include flex-center;
+    flex-direction: column;
+    color: $clr-white;
+    box-shadow: $shadow-lg;
+
+    &-number {
+      font-family: $ff-serif;
+      font-size: $fs-3xl;
+      font-weight: $fw-black;
+      line-height: 1;
+    }
+
+    &-text {
+      font-family: $ff-body;
+      font-size: $fs-xs;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+  }
+
+  &__content {
+    text-align: center;
+
+    @include respond(lg) { text-align: left; }
+  }
+
+  // .content-desc max-width override
+  &__desc {
+    max-width: 480px;
+
+    @include respond(lg) { margin-inline: 0; }
+  }
+
+  &__features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $sp-lg;
+    margin-bottom: $sp-2xl;
+  }
+
+  &__feature {
+    display: flex;
+    align-items: flex-start;
+    gap: $sp-md;
+    text-align: left;
+
+    &-icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      background: $clr-peach;
+      border-radius: $radius-md;
+      @include flex-center;
+      font-size: $fs-xl;
+    }
+
+    &-title {
+      font-family: $ff-serif;
+      font-size: $fs-base;
+      font-weight: $fw-bold;
+      color: $clr-charcoal;
+      margin-bottom: 2px;
+    }
+
+    &-text {
+      font-size: $fs-sm;
+      color: $clr-gray;
+    }
+  }
+}

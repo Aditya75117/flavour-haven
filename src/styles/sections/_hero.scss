@@ -1,0 +1,123 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: url("/images/hero-bg.jpg") center / cover no-repeat fixed;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($clr-charcoal, .85) 0%,
+      rgba($clr-dark, .6) 50%,
+      rgba($clr-burnt, .3) 100%
+    );
+    z-index: 1;
+  }
+
+  &__content {
+    @include container;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: $sp-4xl;
+
+    @include respond(md) {
+      text-align: left;
+      margin: 0;
+      max-width: none;
+    }
+  }
+
+  // Uses .content-tagline from globals, only overrides color for dark bg
+  &__tagline {
+    color: $clr-amber;
+  }
+
+  &__title {
+    font-family: $ff-serif;
+    font-size: $fs-6xl;
+    font-weight: $fw-black;
+    color: $clr-white;
+    line-height: $lh-tight;
+    margin-bottom: $sp-lg;
+
+    span {
+      color: $clr-amber;
+      display: inline-block;
+    }
+  }
+
+  // Uses .content-desc from globals, only overrides color
+  &__desc {
+    color: rgba($clr-white, .8);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $sp-md;
+    justify-content: center;
+
+    @include respond(md) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__btn-primary {
+    @include btn-primary;
+    padding: $sp-md $sp-2xl;
+    font-size: $fs-md;
+  }
+
+  &__btn-outline {
+    @include btn-base;
+    background: transparent;
+    color: $clr-white;
+    border: 2px solid rgba($clr-white, .4);
+
+    &:hover {
+      border-color: $clr-amber;
+      color: $clr-amber;
+      transform: translateY(-2px);
+    }
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: $sp-2xl;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $sp-sm;
+    color: rgba($clr-white, .6);
+    font-family: $ff-body;
+    font-size: $fs-xs;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    &-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, $clr-amber, transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: .4; transform: scaleY(1); }
+  50%      { opacity: 1;  transform: scaleY(1.2); }
+}

@@ -1,0 +1,99 @@
+// ========================================
+// COLOR PALETTE — warm restaurant tones
+// ========================================
+$clr-gold:        #D4A017;
+$clr-amber:       #E8A317;
+$clr-orange:      #E65100;
+$clr-burnt:       #BF360C;
+$clr-crimson:     #C62828;
+$clr-red:         #B71C1C;
+$clr-cream:       #FFF8E1;
+$clr-ivory:       #FFFDE7;
+$clr-peach:       #FFF3E0;
+$clr-charcoal:    #1A1A1A;
+$clr-dark:        #212121;
+$clr-gray:        #757575;
+$clr-light-gray:  #E0E0E0;
+$clr-white:       #FFFFFF;
+
+// Gradients
+$grad-warm:       linear-gradient(135deg, $clr-orange, $clr-crimson);
+$grad-gold:       linear-gradient(135deg, $clr-gold, $clr-amber);
+$grad-dark:       linear-gradient(180deg, rgba($clr-charcoal, .95), rgba($clr-dark, .85));
+
+// ========================================
+// TYPOGRAPHY — fluid with clamp()
+// ========================================
+$ff-serif:    "Playfair Display", Georgia, serif;
+$ff-cursive:  "Pacifico", cursive;
+$ff-body:     "Lora", Georgia, serif;
+
+// Fixed small sizes (too small to benefit from fluid scaling)
+$fs-xs:   0.75rem;    // 12px
+$fs-sm:   0.875rem;   // 14px
+
+// Fluid sizes: clamp(mobile-min, preferred, desktop-max)
+$fs-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);  // ~15px → 17px
+$fs-md:   clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);       // ~16px → 19px
+$fs-lg:   clamp(1.125rem, 1rem + 0.5vw, 1.375rem);       // ~18px → 22px
+$fs-xl:   clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);      // ~20px → 26px
+$fs-2xl:  clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem);       // ~24px → 34px
+$fs-3xl:  clamp(1.75rem, 1.3rem + 1.8vw, 2.625rem);      // ~28px → 42px
+$fs-4xl:  clamp(2rem, 1.4rem + 2.5vw, 3.25rem);          // ~32px → 52px
+$fs-5xl:  clamp(2.25rem, 1.5rem + 3vw, 3.75rem);         // ~36px → 60px
+$fs-6xl:  clamp(2.75rem, 1.8rem + 3.8vw, 4.75rem);       // ~44px → 76px
+
+$fw-regular:  400;
+$fw-medium:   500;
+$fw-semibold: 600;
+$fw-bold:     700;
+$fw-black:    900;
+
+$lh-tight:  1.2;
+$lh-normal: 1.6;
+$lh-loose:  1.8;
+
+// ========================================
+// SPACING — fluid with clamp()
+// ========================================
+// Fixed small sizes
+$sp-xs:  0.25rem;
+$sp-sm:  0.5rem;
+$sp-md:  1rem;
+
+// Fluid sizes
+$sp-lg:  clamp(1.25rem, 1rem + 0.5vw, 1.75rem);      // ~20px → 28px
+$sp-xl:  clamp(1.5rem, 1.2rem + 0.8vw, 2.25rem);     // ~24px → 36px
+$sp-2xl: clamp(2rem, 1.5rem + 1.5vw, 3.25rem);       // ~32px → 52px
+$sp-3xl: clamp(2.5rem, 1.8rem + 2.2vw, 4.25rem);     // ~40px → 68px
+$sp-4xl: clamp(3.5rem, 2.5rem + 3vw, 6.25rem);       // ~56px → 100px
+$sp-5xl: clamp(4.5rem, 3rem + 4vw, 8.25rem);         // ~72px → 132px
+
+// ========================================
+// BREAKPOINTS (mobile-first)
+// ========================================
+$bp-sm:  576px;
+$bp-md:  768px;
+$bp-lg:  992px;
+$bp-xl:  1200px;
+$bp-xxl: 1400px;
+
+// ========================================
+// MISC
+// ========================================
+$radius-sm:  4px;
+$radius-md:  8px;
+$radius-lg:  16px;
+$radius-xl:  24px;
+$radius-full: 50%;
+
+$shadow-sm:  0 2px 8px rgba(0, 0, 0, .08);
+$shadow-md:  0 4px 16px rgba(0, 0, 0, .12);
+$shadow-lg:  0 8px 32px rgba(0, 0, 0, .16);
+$shadow-xl:  0 16px 48px rgba(0, 0, 0, .20);
+
+$transition-fast:   .2s ease;
+$transition-normal: .3s ease;
+$transition-slow:   .5s ease;
+
+$max-width: 1200px;

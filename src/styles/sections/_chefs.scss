@@ -1,0 +1,74 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.chefs {
+  background: $clr-ivory;
+
+  &__card {
+    text-align: center;
+    position: relative;
+
+    &:hover .chefs__card-socials {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // .img-fill from globals handles fill-image base
+  &__card-img {
+    aspect-ratio: 3 / 4;
+    margin-bottom: $sp-lg;
+  }
+
+  &__card-socials {
+    position: absolute;
+    bottom: $sp-lg;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    display: flex;
+    gap: $sp-sm;
+    opacity: 0;
+    transition: all $transition-normal;
+
+    a {
+      width: 40px;
+      height: 40px;
+      background: $clr-white;
+      border-radius: $radius-full;
+      @include flex-center;
+      color: $clr-orange;
+      font-size: $fs-sm;
+      transition: all $transition-fast;
+      box-shadow: $shadow-sm;
+
+      &:hover {
+        background: $clr-orange;
+        color: $clr-white;
+      }
+    }
+  }
+
+  &__card-name {
+    font-family: $ff-serif;
+    font-size: $fs-xl;
+    font-weight: $fw-bold;
+    color: $clr-charcoal;
+    margin-bottom: $sp-xs;
+  }
+
+  &__card-role {
+    font-family: $ff-cursive;
+    font-size: $fs-base;
+    color: $clr-orange;
+    display: block;
+    margin-bottom: $sp-sm;
+  }
+
+  &__card-desc {
+    font-size: $fs-sm;
+    color: $clr-gray;
+    max-width: 280px;
+    margin-inline: auto;
+    line-height: $lh-normal;
+  }
+}

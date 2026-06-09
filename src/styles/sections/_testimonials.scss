@@ -1,0 +1,117 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.testimonials {
+  background: $clr-white;
+  overflow: hidden;
+
+  // .card-hover from globals handles lift; only card-specific styles here
+  &__card {
+    background: $clr-cream;
+    border-radius: $radius-lg;
+    padding: $sp-2xl;
+    position: relative;
+    border: 1px solid transparent;
+
+    &:hover {
+      border-color: rgba($clr-amber, .3);
+    }
+
+    &::before {
+      content: "\201C";
+      position: absolute;
+      top: $sp-md;
+      right: $sp-xl;
+      font-family: $ff-serif;
+      font-size: clamp(4rem, 3rem + 3vw, 6rem);
+      color: rgba($clr-orange, .08);
+      line-height: 1;
+    }
+  }
+
+  &__card-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: $sp-md;
+
+    span {
+      color: $clr-amber;
+      font-size: $fs-md;
+    }
+  }
+
+  &__card-text {
+    font-family: $ff-body;
+    font-size: $fs-base;
+    color: $clr-dark;
+    line-height: $lh-loose;
+    margin-bottom: $sp-xl;
+    font-style: italic;
+  }
+
+  &__card-author {
+    display: flex;
+    align-items: center;
+    gap: $sp-md;
+  }
+
+  &__card-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: $radius-full;
+    overflow: hidden;
+    border: 2px solid $clr-amber;
+
+    img { @include img-cover; }
+  }
+
+  &__card-info {
+    h4 {
+      font-family: $ff-serif;
+      font-size: $fs-base;
+      font-weight: $fw-semibold;
+      color: $clr-charcoal;
+    }
+
+    span {
+      font-size: $fs-sm;
+      color: $clr-gray;
+    }
+  }
+
+  &__stats {
+    margin-top: $sp-4xl;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $sp-xl;
+    text-align: center;
+
+    @include respond(md) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__stat {
+    padding: $sp-xl;
+    border-radius: $radius-md;
+    background: $clr-peach;
+
+    &-number {
+      font-family: $ff-serif;
+      font-size: $fs-4xl;
+      font-weight: $fw-black;
+      color: $clr-orange;
+      display: block;
+    }
+
+    &-label {
+      font-family: $ff-body;
+      font-size: $fs-sm;
+      color: $clr-gray;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: $sp-xs;
+      display: block;
+    }
+  }
+}

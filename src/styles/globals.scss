@@ -1,0 +1,277 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// ========================================
+// RESET & BASE
+// ========================================
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: $ff-body;
+  font-size: $fs-base;
+  line-height: $lh-normal;
+  color: $clr-charcoal;
+  background-color: $clr-white;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $ff-serif;
+  line-height: $lh-tight;
+}
+
+// ========================================
+// REUSABLE LAYOUT
+// ========================================
+.container {
+  @include container;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Common responsive grid: 1 col → 2 col → 3 col
+.grid-1-2-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $sp-xl;
+
+  @include respond(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Two-column split layout (content + visual)
+.split-grid {
+  @include container;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $sp-3xl;
+  align-items: center;
+
+  @include respond(lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: $sp-4xl;
+  }
+}
+
+// ========================================
+// SECTION BASE — shared by all full-width sections
+// ========================================
+.section {
+  padding-block: $sp-5xl;
+
+  &__inner {
+    @include container;
+  }
+}
+
+// Defers rendering of off-screen sections for perf
+.section--lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
+// ========================================
+// SECTION HEADER — "tagline + title + desc + divider"
+// Used by: specials, menu, chefs, testimonials, gallery
+// ========================================
+.section-header {
+  text-align: center;
+  margin-bottom: $sp-3xl;
+
+  &__tagline {
+    font-family: $ff-cursive;
+    font-size: $fs-xl;
+    color: $clr-orange;
+    display: block;
+    margin-bottom: $sp-sm;
+  }
+
+  &__title {
+    font-family: $ff-serif;
+    font-size: $fs-4xl;
+    font-weight: $fw-bold;
+    line-height: $lh-tight;
+    color: $clr-charcoal;
+    margin-bottom: $sp-md;
+  }
+
+  &__desc {
+    font-family: $ff-body;
+    font-size: $fs-base;
+    line-height: $lh-normal;
+    color: $clr-gray;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  &__divider {
+    width: 60px;
+    height: 3px;
+    background: $grad-warm;
+    margin: $sp-lg auto 0;
+    border-radius: $radius-full;
+  }
+
+  // Modifier: light text on dark backgrounds (menu, gallery)
+  &--light &__tagline { color: $clr-amber; }
+  &--light &__title   { color: $clr-white; }
+  &--light &__desc    { color: rgba($clr-white, .6); }
+}
+
+// ========================================
+// CONTENT BLOCK — inline "tagline + title + desc"
+// Used by: about, hero, reservation (not centered, no .section-header)
+// ========================================
+.content-tagline {
+  font-family: $ff-cursive;
+  font-size: $fs-xl;
+  color: $clr-orange;
+  display: block;
+  margin-bottom: $sp-sm;
+}
+
+.content-title {
+  font-family: $ff-serif;
+  font-size: $fs-4xl;
+  font-weight: $fw-bold;
+  line-height: $lh-tight;
+  color: $clr-charcoal;
+  margin-bottom: $sp-lg;
+}
+
+.content-desc {
+  font-family: $ff-body;
+  font-size: $fs-md;
+  color: $clr-gray;
+  line-height: $lh-loose;
+  margin-bottom: $sp-2xl;
+  max-width: 540px;
+}
+
+// ========================================
+// FILL-IMAGE WRAPPER
+// Parent for next/image with fill prop.
+// Needs: position:relative + dimensions (aspect-ratio or explicit h/w)
+// ========================================
+.img-fill {
+  position: relative;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    transition: transform $transition-slow;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+
+  // Standalone variant with rounded corners (about, chefs, gallery)
+  &--rounded {
+    border-radius: $radius-lg;
+  }
+}
+
+// ========================================
+// CARD HOVER LIFT — shared lift animation
+// Used by: specials cards, testimonial cards
+// ========================================
+.card-hover {
+  transition: all $transition-normal;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// ========================================
+// BUTTONS — concrete classes (no mixin duplication in output)
+// ========================================
+.btn-primary {
+  @include btn-primary;
+}
+
+.btn-outline {
+  @include btn-outline;
+}
+
+// Dark-bg variant: outline button on charcoal/dark sections
+.btn-outline--light {
+  @include btn-outline;
+  border-color: rgba($clr-white, .3);
+  color: $clr-white;
+
+  &:hover {
+    background: $clr-amber;
+    border-color: $clr-amber;
+    color: $clr-charcoal;
+  }
+}
+
+// ========================================
+// SECTION CTA — centered link at section bottom
+// Used by: menu "View Full Menu", gallery "Follow Us"
+// ========================================
+.section-cta {
+  text-align: center;
+  margin-top: $sp-3xl;
+}
