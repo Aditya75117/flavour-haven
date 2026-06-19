@@ -38,6 +38,10 @@
         padding: $sp-2xl;
       }
 
+      .specials__card-footer {
+        width: 100%;
+      }
+
       .specials__card-title {
         font-size: $fs-2xl;
       }
@@ -83,7 +87,7 @@
   }
 
   &__card-desc {
-    font-size: $fs-sm;
+    font-size: $fs-base;
     color: $clr-gray;
     line-height: $lh-normal;
     margin-bottom: $sp-md;
