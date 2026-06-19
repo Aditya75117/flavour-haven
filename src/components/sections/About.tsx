@@ -41,7 +41,11 @@ export default function About() {
           </div>
           <div className="about__badge">
             <span className="about__badge-number">25</span>
-            <span className="about__badge-text">Years of Excellence</span>
+            <span className="about__badge-text">
+              Years of
+              <br />
+              Excellence
+            </span>
           </div>
         </div>
 
