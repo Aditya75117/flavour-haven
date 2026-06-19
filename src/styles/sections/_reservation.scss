@@ -61,13 +61,26 @@
     display: flex;
     flex-direction: column;
     gap: $sp-lg;
+    text-align: left;
+
+    // Side-by-side on tablet only (768px – 991px)
+    @include respond(md) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include respond(lg) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &__info-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: $sp-lg;
-    justify-content: center;
+    justify-content: flex-start;
+    text-align: left;
     padding: clamp(0.75rem, 0.5rem + 0.5vw, 1rem) clamp(1rem, 0.5rem + 1vw, 1.5rem);
     background: rgba($clr-white, .06);
     border: 1px solid rgba($clr-white, .08);
@@ -78,10 +91,6 @@
     &:hover {
       background: rgba($clr-white, .1);
       border-color: rgba($clr-amber, .25);
-    }
-
-    @include respond(lg) {
-      justify-content: flex-start;
     }
   }
 
@@ -98,6 +107,9 @@
   &__info-text {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    min-width: 0;
 
     h4 {
       font-family: $ff-serif;
@@ -125,7 +137,7 @@
 
   &__note {
     font-family: $ff-body;
-    font-size: $fs-sm;
+    font-size: $fs-base;
     color: rgba($clr-white, .4);
     font-style: italic;
     text-align: center;
@@ -194,7 +206,7 @@
   }
 
   &__form-subtitle {
-    font-size: $fs-sm;
+    font-size: $fs-base;
     color: rgba($clr-white, .5);
   }
 
@@ -203,9 +215,10 @@
     grid-template-columns: 1fr;
     gap: $sp-lg;
     margin-bottom: $sp-xl;
+    width: 100%;
 
     @include respond(sm) {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
@@ -213,6 +226,8 @@
     display: flex;
     flex-direction: column;
     gap: $sp-xs;
+    min-width: 0;
+    width: 100%;
 
     &--full {
       @include respond(sm) { grid-column: 1 / -1; }
@@ -230,6 +245,8 @@
     input,
     select,
     textarea {
+      width: 100%;
+      box-sizing: border-box;
       padding: clamp(0.7rem, 0.5rem + 0.4vw, 0.9rem) $sp-md;
       border: 1.5px solid rgba($clr-white, .12);
       border-radius: $radius-md;
@@ -275,6 +292,7 @@
 
   &__input-wrap {
     position: relative;
+    width: 100%;
 
     .reservation__input-icon {
       position: absolute;
@@ -288,6 +306,8 @@
 
     input,
     select {
+      width: 100%;
+      box-sizing: border-box;
       padding-left: clamp(2.5rem, 2.2rem + 0.5vw, 2.8rem);
     }
 
@@ -351,7 +371,7 @@
 
   &__form-footer {
     text-align: center;
-    font-size: $fs-xs;
+    font-size: $fs-base;
     color: rgba($clr-white, .35);
     margin-top: $sp-lg;
     letter-spacing: 0.3px;
