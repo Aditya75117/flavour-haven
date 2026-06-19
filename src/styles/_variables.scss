@@ -28,13 +28,14 @@ $ff-serif:    "Playfair Display", Georgia, serif;
 $ff-cursive:  "Pacifico", cursive;
 $ff-body:     "Lora", Georgia, serif;
 
-// Fixed small sizes (too small to benefit from fluid scaling)
+// Fixed small sizes (UI labels, captions — not body/paragraph text)
 $fs-xs:   0.75rem;    // 12px
 $fs-sm:   0.875rem;   // 14px
 
 // Fluid sizes: clamp(mobile-min, preferred, desktop-max)
-$fs-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);  // ~15px → 17px
-$fs-md:   clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);       // ~16px → 19px
+// $fs-base is the paragraph/body minimum — never below 16px
+$fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);     // 16px → 17px
+$fs-md:   clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);       // 16px → 19px
 $fs-lg:   clamp(1.125rem, 1rem + 0.5vw, 1.375rem);       // ~18px → 22px
 $fs-xl:   clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);      // ~20px → 26px
 $fs-2xl:  clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem);       // ~24px → 34px
